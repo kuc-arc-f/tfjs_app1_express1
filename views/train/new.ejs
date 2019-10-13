@@ -1,0 +1,41 @@
+<div id="app">
+    <h1>New</h1>
+    <hr />
+    <div class="form-group">
+            <label for="TopicTitle">High</label>
+            <input type="text" class="form-control" id="hnum" v-model="hnum">
+    </div>
+    <div class="form-group">
+        <label for="TopicTitle">Low</label>
+        <input type="text" class="form-control" id="lnum" v-model="lnum">
+    </div>
+    <button v-on:click="send_post" class="btn btn-outline-primary">投稿</button>
+
+</div>
+
+<!-- -->
+<script>
+new Vue({
+    el: '#app',
+    created () {
+    },    
+    data: {
+        hnum : "",
+        lnum : "",
+    },
+    methods: {
+        send_post(){
+            var item = {
+                'hnum': this.hnum,
+                'lnum': this.lnum
+            };
+            //
+            axios.post('/api_mdats/new' , item ).then(res => {
+                console.log(res.data );
+                window.location.href = '/mdats';
+            });
+        },        
+    }
+
+});
+</script>

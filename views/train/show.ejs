@@ -1,0 +1,33 @@
+<div id="app">
+    <h1>Tasks - show</h1>
+    <hr />
+    <h1>title : {{ item.mdate }}</h1>
+</div>
+
+<!-- -->
+<script>
+new Vue({
+    el: '#app',
+    created () {
+        var id = "<%= params_id %>";
+        this.getItem(id)
+    },    
+    data: {
+//       tasks: [],
+        item : [],
+        title:'',
+        content:''        
+    },
+    methods: {
+        getItem: function(id) {
+            axios.get("/api_mdats/show/" + id )
+            .then(res =>  {
+                var dat = res.data.docs
+                this.item = dat[0];
+                console.log( this.item )
+            })            
+        }
+    }
+
+});
+</script>

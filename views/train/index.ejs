@@ -1,0 +1,70 @@
+<div id="app">
+    <h1>index</h1>
+    <hr />
+    <div class="row" >
+        <div class="col-sm-6" style="">
+            <!--
+            <a class="btn btn-outline-primary" href="/train/new"> add</a>
+            -->
+        </div>
+        <div class="col-sm-6" style="text-align:center;">
+            <a class="btn btn-outline-primary" href="/train/chart"> Chart</a>
+        </div>    
+    </div>
+    <br />
+    <!-- -->
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Heigh</th>
+            <th scope="col">Low</th>
+        </tr>
+        </thead>
+        <tbody v-for="mdat in mdats" v-bind:key="mdat.id">
+        <tr>
+            <td>{{ mdat.no }}
+            </td>
+            <td>{{ mdat.hnum }}
+            </td>
+            <td>{{ mdat.pred }}
+            </td>
+            <td>&nbsp;
+                <!--
+                <a v-bind:href="'/mdats/edit/' + mdat.id"
+                 class="btn btn-outline-primary"> edit </a> 
+                -->
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<!-- -->
+<script>
+new Vue({
+    el: '#app',
+    created () {
+        this.getTasks();
+        console.log("#tasks.index");
+    },    
+    data: {
+        mdats: [],
+    },
+    methods: {
+        getTasks () {
+            axios.get("/api_train/index").then(res =>  {
+                var items = res.data.docs
+                var arr =[];
+                items.forEach( function (item) {
+//console.log( item )                    
+                    arr.push(item)
+                });      
+                this.mdats = arr;
+            })        
+        }
+    }
+
+});
+</script>

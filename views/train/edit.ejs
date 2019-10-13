@@ -1,0 +1,70 @@
+<div id="app">
+    <h1>Edit</h1>
+    <hr />
+    <div class="form-group">
+        <label for="TopicTitle">High</label>
+        <input type="text" class="form-control" id="hnum" v-model="hnum">
+    </div>
+    <div class="form-group">
+        <label for="TopicTitle">Low</label>
+        <input type="text" class="form-control" id="lnum" v-model="lnum">
+    </div>
+    <button v-on:click="updateTask"
+     class="btn btn-outline-primary">更新</button>
+
+    <hr />
+    <button v-on:click="deleteTask"
+     class="btn btn-outline-primary"> delete</button>
+
+    
+</div>
+
+<!-- -->
+<script>
+new Vue({
+    el: '#app',
+    created () {
+        this.id = "<%= params_id %>";
+        this.getItem( this.id)
+    },    
+    data: {
+        item : [],
+        hnum : "",
+        lnum : "",
+        id: 0,        
+    },
+    methods: {
+        getItem: function(id) {
+            axios.get("/api_mdats/show/" + id )
+            .then(res =>  {
+                var dat = res.data.docs
+//                this.item = dat[0];
+                var item = dat[0];
+                this.hnum =  item.hnum
+                this.lnum =  item.lnum
+                console.log( item )
+            })            
+        },
+        updateTask: function () {
+        var task = {
+                'id' : this.id,
+                'hnum': this.hnum,
+                'lnum': this.lnum
+            };
+            axios.post('/api_mdats/update/', task ).then(res => {
+                console.log(res.data );
+                window.location.href = '/mdats';
+            });
+
+        },
+        deleteTask: function () {
+            axios.get("/api_mdats/delete/" +this.id )
+            .then(res =>  {
+                console.log( res.data )
+                window.location.href = '/mdats';
+            })
+        }        
+    }
+
+});
+</script>

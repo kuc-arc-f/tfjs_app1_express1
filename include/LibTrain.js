@@ -1,7 +1,7 @@
 // LibTrain
 const tf = require('@tensorflow/tfjs-node');
 const fetch = require('node-fetch');
-//import fetch from 'node-fetch';
+
 /**
  * constructor
  */

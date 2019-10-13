@@ -1,4 +1,4 @@
-﻿# tfjs_app1_express1
+﻿# tfjs_app1
 
  Version: 0.9.1
 
@@ -8,13 +8,19 @@
 
 ***
 
-TensorFlow.js + node/express , train sample
+TensorFlow.js train sample / node.js
 
 ***
 ### setup
 npm install @tensorflow/tfjs-node
 
 npm install --save node-fetch
+
+npm install
+
+***
+### start
+npm start
 
 
 ***

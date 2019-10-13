@@ -45,5 +45,25 @@ LibTrainData.prototype.convert_train_arr = function(items)
 	}
 	return ret;
 }
+/******************************** 
+*
+*********************************/
+LibTrainData.prototype.convert_predArr = function(items, pred){
+	console.log( "#convert_predArr" ); 
 
+	var ret = []
+	var iCt = 0;
+//console.log( items ); 
+	items.forEach( function (item) {
+		var arr = {
+			'no' : item.no,
+			'hnum' : item.hnum,
+			'pred' : pred[iCt ],
+		}   
+		ret.push( arr)   
+		iCt += 1             
+	});
+
+	return ret;
+}
 module.exports = LibTrainData
