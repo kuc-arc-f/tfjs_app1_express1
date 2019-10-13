@@ -26,7 +26,7 @@ function get_config(lbl, hnum ,pred ){
                     borderColor: color_red,
                     data: hnum ,
 				}, {
-					label: 'L-num',
+					label: 'predict',
 					fill: false,
 					backgroundColor: color_blue,
                     borderColor: color_blue,
@@ -69,18 +69,14 @@ function get_config(lbl, hnum ,pred ){
 //
 function convert_cahrt_arr( items ){
 	var hnum = []
-//	var lnum = []
 	var lbl = []
 	items.forEach( function (item) {
-//console.log( item );    
 		lbl.push( item.mdate )                
 		hnum.push( item.hnum )                
-//		lnum.push( item.lnum )                
 	});
 	var ret= {
 		"lbl" : lbl,
 		"hnum" : hnum,
-//		"lnum" : lnum,
 	}
 	return ret;
 }
@@ -90,13 +86,6 @@ function get_chart_data(){
     axios.get("/api_train/chart_items").then(res =>  {
 		var items = res.data.docs
 console.log( items.pred  );
-//		var arr = convert_cahrt_arr(items.chart_dats )
-/*
-		items.chart_dats.forEach( function (item) {
-			console.log( items.chart_dats.lbl, items.chart_dats.hnum  );
-		});      
-		var arr =[];
-*/                    
 		config = get_config(items.chart_dats.lbl, 
 			items.chart_dats.hnum, items.pred );
 		window.myLine = new Chart(ctx, config);

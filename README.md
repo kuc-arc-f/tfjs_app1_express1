@@ -19,14 +19,14 @@ npm install --save node-fetch
 npm install
 
 ***
-### start
+### start - express
 npm start
 
 
 ***
 ### blog
 
-
+https://knaka0209.hatenablog.com/entry/tfjs_4_express
 
 ***
 
